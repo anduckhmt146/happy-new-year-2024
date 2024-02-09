@@ -1,46 +1,44 @@
-let fireworks = []
-let clicked = false
+let fireworks = [];
+let clicked = false;
 function setup() {
-    createCanvas(window.innerWidth, window.innerHeight)
-    rectMode(CENTER);
-}
-
-function getCountdownTime() {
-    let now = new Date()
-    let hours = 23 - now.getHours()
-    let minutes = 60 - now.getMinutes()
-    let seconds = 60 - now.getSeconds()
-    if (hours < 10) hours = `0${hours}`
-    if (minutes < 10) minutes = `0${minutes}`
-    if (seconds < 10) seconds = `0${seconds}`
-    return `${hours}:${minutes}:${seconds}`
+  createCanvas(window.innerWidth, window.innerHeight);
+  rectMode(CENTER);
 }
 
 function draw() {
-    background(0,0,0,25)
-    if (!clicked) {
-        fill(255, 255, 255, 10)
-        noStroke()
-        textAlign(CENTER, CENTER);
-        text("click for fireworks", window.innerWidth / 2, window.innerHeight / 2);
-    }else {
-        textSize(140);
-        fill(255, 255, 255, 10)
-        noStroke()
-        textAlign(CENTER, CENTER);
-        text(getCountdownTime(), window.innerWidth / 2, window.innerHeight / 2);
-        textSize(10);
-        noStroke()
-        
-        for (let f of fireworks) f.step()
-    }
+  background(0, 0, 0, 25);
+  if (!clicked) {
+    fill(255, 255, 255, 10);
+    noStroke();
+    textAlign(CENTER, CENTER);
+    textSize(20);
+    text('click for fireworks', window.innerWidth / 2, window.innerHeight / 2);
+  } else {
+    textSize(100);
+    fill(255, 255, 255, 10);
+    noStroke();
+    textAlign(CENTER, CENTER);
+    text('Happy 2024', window.innerWidth / 2, window.innerHeight / 2);
+    textSize(10);
+    noStroke();
+
+    textSize(30);
+    ~noStroke();
+    text(
+      ' Wish all your dreams turn into reality \nand all your efforts into great achievements.',
+      window.innerWidth / 2,
+      window.innerHeight / 2 + 150
+    );
+
+    for (let f of fireworks) f.step();
+  }
 }
 
 function mouseReleased() {
-    clicked = true
-    let target = {
-        x: mouseX,
-        y: mouseY
-    }
-    fireworks.push(new Firework(target))
+  clicked = true;
+  let target = {
+    x: mouseX,
+    y: mouseY,
+  };
+  fireworks.push(new Firework(target));
 }
